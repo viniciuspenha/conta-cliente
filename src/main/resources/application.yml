@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: conta-cliente
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/conta-cliente?createDatabaseIfNotExist=true
+    username: root
+    password: vini
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
