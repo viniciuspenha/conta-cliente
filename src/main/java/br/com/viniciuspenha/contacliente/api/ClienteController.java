@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/cliente/v1")
 public class ClienteController {
 
     private final ClienteService clienteService;

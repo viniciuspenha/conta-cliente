@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -23,5 +24,6 @@ public class NovaTransferenciaDTO {
     @NotNull(message = "valor nao pode ser nulo")
     @DecimalMin(value = "0.0", inclusive = false, message = "valor nao pode ser zero")
     @DecimalMax(value = "1000.00", message = "valor máximo = 1000.00")
+    @Digits(integer = 4, fraction = 2, message = "valor invalido. Permitido apenas duas casas depois da virgula")
     private BigDecimal valor;
 }

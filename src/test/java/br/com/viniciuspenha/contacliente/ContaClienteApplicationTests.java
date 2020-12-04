@@ -9,5 +9,4 @@ class ContaClienteApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

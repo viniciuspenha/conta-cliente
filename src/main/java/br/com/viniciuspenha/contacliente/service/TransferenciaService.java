@@ -69,8 +69,8 @@ public class TransferenciaService {
     }
 
     @Transactional
-    protected Transferencia saveTransferencia(NovaTransferenciaDTO novaTransferenciaDTO, Long contaDestinoId, TransferenciaStatus status, TransferenciaErro erro) {
-        return transferenciaRepository.save(transferenciaMapper.toTransferencia(
+    protected void saveTransferencia(NovaTransferenciaDTO novaTransferenciaDTO, Long contaDestinoId, TransferenciaStatus status, TransferenciaErro erro) {
+        transferenciaRepository.save(transferenciaMapper.toTransferencia(
             TransferenciaResponse.builder()
                     .contaOrigem(novaTransferenciaDTO.getContaOrigem())
                     .contaDestino(contaDestinoId)
@@ -83,7 +83,7 @@ public class TransferenciaService {
     }
 
     @Transactional
-    protected void validaSaldo(Conta contaOrigem, Conta contaDestino, NovaTransferenciaDTO transferencia) throws SaldoInsuficienteException {
+    public void validaSaldo(Conta contaOrigem, Conta contaDestino, NovaTransferenciaDTO transferencia) throws SaldoInsuficienteException {
         log.info("TransferenciaService.validaSaldo - saldo conta origem {}, valor transferencia {}", contaOrigem.getSaldo(), transferencia.getValor());
         if (contaOrigem.getSaldo().compareTo(transferencia.getValor()) < 0) {
             throw new SaldoInsuficienteException();

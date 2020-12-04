@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/transferencia")
+@RequestMapping("/transferencia/v1")
 public class TransferenciaController {
 
     private final TransferenciaService transferenciaService;

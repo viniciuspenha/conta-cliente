@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/conta")
+@RequestMapping("/conta/v1")
 public class ContaController {
 
     private final ContaService contaService;
