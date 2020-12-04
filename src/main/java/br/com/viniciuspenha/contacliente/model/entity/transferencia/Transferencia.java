@@ -1,4 +1,4 @@
-package br.com.viniciuspenha.contacliente.model.entity;
+package br.com.viniciuspenha.contacliente.model.entity.transferencia;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,20 +18,23 @@ import java.time.LocalDateTime;
 @Builder
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-@Table(name = "conta")
-public class Conta {
+@Table(name = "transferencia")
+public class Transferencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private Long contaOrigem;
+    private Long contaDestino;
+    private String numeroContaDestino;
+    private BigDecimal valor;
 
-    private String numero;
+    @Enumerated(EnumType.STRING)
+    private TransferenciaStatus status;
 
-    private BigDecimal saldo = BigDecimal.ZERO;
+    @Enumerated(EnumType.STRING)
+    private TransferenciaErro erro;
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -40,14 +43,4 @@ public class Conta {
     @Column(nullable = false)
     @LastModifiedDate
     private LocalDateTime dataAtualizacao;
-
-    @Transient
-    public void adicionaSaldo(BigDecimal valor) {
-        this.saldo = this.saldo.add(valor);
-    }
-
-    @Transient
-    public void removeSaldo(BigDecimal valor) {
-        this.saldo = this.saldo.subtract(valor);
-    }
 }
